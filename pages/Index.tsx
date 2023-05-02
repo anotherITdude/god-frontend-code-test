@@ -1,11 +1,12 @@
 import React from "react";
-import { Text } from "vcc-ui";
-
+import Navbar from "../src/components/Navbar";
+import Carousel from './../src/components/Carousel/Main'
 const Home = () => {
   return (
-    <div>
-      <Text variant="yang">VCC UI Setup</Text>
-    </div>
+    <>
+      <Navbar />
+      <Carousel />
+    </>
   );
 };
 
