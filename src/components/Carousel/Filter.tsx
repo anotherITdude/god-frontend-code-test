@@ -33,7 +33,7 @@ const Filter: React.FC = () => {
           }}
           onClick={() => handleFilter("")}
         >
-          <Text>All ({cars.length})</Text>
+        <Text>All ({cars.length})</Text>
         </Click>
         {unique.map((filter, index) => (
           <Click
@@ -54,7 +54,7 @@ const Filter: React.FC = () => {
             onClick={() => handleFilter(filter)}
           >
             <Text>
-              {filter} ({countUnique(filter)})
+              {filter.toLocaleUpperCase()} ({countUnique(filter)})
             </Text>
           </Click>
         ))}

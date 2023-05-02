@@ -10,7 +10,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
     <Block
       as="section"
       extend={{
-        margin: "auto",
+       
         padding: "10px 5px",
         fromM: {
           padding: "10px 10px",
