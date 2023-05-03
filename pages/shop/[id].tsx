@@ -1,10 +1,13 @@
 import { useRouter } from "next/router";
 import { Card, CardContent, Flex, Link, Spacer, Text } from "vcc-ui";
 import Container from "../../src/components/Container";
+import Navbar from '../../src/components/Navbar';
 
 const ShopPage = () => {
   const router = useRouter();
   return (
+    <>
+    <Navbar />
     <Container>
       <Flex
         extend={{
@@ -25,7 +28,8 @@ const ShopPage = () => {
           </CardContent>
         </Card>
       </Flex>
-    </Container>
+      </Container>
+      </>
   );
 };
 

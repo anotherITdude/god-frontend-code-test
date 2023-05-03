@@ -2,10 +2,13 @@ import { useRouter } from "next/router";
 import Container from '../../src/components/Container';
 import { CardContent, Flex, Card, Text, Spacer } from 'vcc-ui';
 import {Link}  from 'vcc-ui';
+import Navbar from '../../src/components/Navbar';
 
 const Learn = () => {
   const router = useRouter();
   return (
+    <>
+    <Navbar />
     <Container>
       <Flex
         extend={{
@@ -26,7 +29,8 @@ const Learn = () => {
           </CardContent>
         </Card>
       </Flex>
-    </Container>
+      </Container>
+      </>
   );
 };
 
