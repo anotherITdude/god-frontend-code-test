@@ -4,11 +4,12 @@ import { StyleProvider, ThemePicker } from "vcc-ui";
 import "../public/css/styles.css";
 
 const HomePage = ({ Component, pageProps }: AppProps) => {
+  const newLocal = <Component {...pageProps} />
   return (
     <StyleProvider>
       <ThemePicker variant="light">
         <React.StrictMode>
-            <Component {...pageProps} />
+            {newLocal}
         </React.StrictMode>
       </ThemePicker>
     </StyleProvider>
