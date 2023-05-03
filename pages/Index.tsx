@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "../src/components/Navbar";
-import Carousel from './../src/components/Carousel/Main'
-const Home = () => {
+import { NextPage } from "next";
+import Carousel from "../src/components/Carousel/Main";
+
+const Home: NextPage = () => {
   return (
     <>
-      <Navbar />
       <Carousel />
     </>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Block, Text, useTheme, View } from "vcc-ui";
+import { Block } from "vcc-ui";
 
 interface ContainerProps {
   children: React.ReactNode;

@@ -25,11 +25,12 @@ const Filter: React.FC = () => {
           extend={{
             textUnderlineOffset: "5px",
             textDecorationThickness: "3px",
+            textDecorationColor: "#2a609d",
             color: "foreground.secondary",
             textDecoration: `${
               filterModal.currentFilter === "" ? "underline" : ""
             }`,
-            textDecorationColor: "#2a609d",
+            
           }}
           onClick={() => handleFilter("")}
         >

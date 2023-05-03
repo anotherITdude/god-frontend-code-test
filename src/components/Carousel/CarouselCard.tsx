@@ -33,7 +33,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ car }) => {
             as="h3"
             variant="columbus"
             subStyle="inline-link"
-            extend={{ cardModelType }}
+            extend={cardModelType}
           >
             {modelType}
           </Text>
@@ -41,6 +41,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ car }) => {
 
         <Flex extend={imageContainer}>
           <Image
+            priority
             className="carImage"
             src={imageUrl}
             alt={`${modelType}`}

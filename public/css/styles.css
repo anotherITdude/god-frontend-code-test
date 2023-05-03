@@ -11,6 +11,21 @@ body {
   transform: scale(1.05);
 }
 
+.swiper{
+  min-height: 370px;
+}
+
+.swiper .swiper-pagination{
+  bottom:0px !important;
+}
+
+.swiper-pagination-bullet-active{
+ background: black !important;
+ scale:1.2;
+}
+
+
+
 
 
 

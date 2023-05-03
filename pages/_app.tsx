@@ -1,14 +1,17 @@
-import { StyleProvider, ThemePicker } from "vcc-ui";
-import "../public/css/styles.css";
 import React from "react";
-import Home from "./Index";
+import type { AppProps } from "next/app";
+import { StyleProvider, ThemePicker } from "vcc-ui";
+import Layout from "../src/components/Layout";
+import "../public/css/styles.css";
 
-function HomePage() {
+function HomePage({ Component, pageProps }: AppProps) {
   return (
     <StyleProvider>
       <ThemePicker variant="light">
         <React.StrictMode>
-          <Home />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </React.StrictMode>
       </ThemePicker>
     </StyleProvider>

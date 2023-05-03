@@ -11,8 +11,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper";
-
+import  { Navigation, Pagination } from "swiper";
+import { useSwiper } from "swiper/react";
+import {mainContainer} from './Main.style'
 const Main = () => {
   const { cars, loading } = useCars();
   const filterModal = useFilter();
@@ -22,19 +23,22 @@ const Main = () => {
       (car) => car.bodyType === filterModal.currentFilter
     );
   }
+  const SlideNextButton = () => {
+    const swiper = useSwiper();
+
+    return (
+      <button onClick={() => swiper.allowTouchMove}>
+        Slide to the next slide
+      </button>
+    );
+  };
   return (
     <Container>
       {/* filter section */}
       <Filter />
       {/* slider section   */}
       <Flex
-        extend={{
-          flexDirection: "row",
-          justifyContent: "center",
-          marginTop: "20px",
-          maxWidth: '1200px',
-          margin:'auto'
-        }}
+        extend={mainContainer}
       >
         <Swiper
           spaceBetween={0}
@@ -45,12 +49,12 @@ const Main = () => {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           breakpoints={{
-            420: {
-              slidesPerView: 2.3,
+            395: {
+              slidesPerView: filteredCars.length >= 2 ? 2.3 : 2.3,
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 3.3,
               spaceBetween: 0,
             },
             1200: {
@@ -58,7 +62,7 @@ const Main = () => {
               spaceBetween: 0,
             },
           }}
-          className="mySwiper"
+          className="carSwiper"
         >
           {filteredCars.map((res: Car) => (
             <SwiperSlide key={res.id}>
@@ -67,6 +71,7 @@ const Main = () => {
           ))}
         </Swiper>
       </Flex>
+      <SlideNextButton />
     </Container>
   );
 };
