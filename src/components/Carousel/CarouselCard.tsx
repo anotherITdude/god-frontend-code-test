@@ -1,60 +1,64 @@
 import Image from "next/image";
 import React from "react";
-import { Flex, Spacer, Text, Link } from "vcc-ui";
+import { Flex, Spacer, Text, Link, Block } from "vcc-ui";
 import { Car } from "../../services/car-service";
 import Container from "../Container";
-import { carouselCardFooter, linkContainer } from "./CarouselCard.style";
+import {
+  imageContainer,
+  cardContainer,
+  cardHeading,
+  cardSubHeading,
+  cardFooter,
+  cardBodyType,
+  cardModelType,
+} from "./CarouselCard.style";
 
 interface CarouselCardProps {
   car: Car;
 }
 
 const CarouselCard: React.FC<CarouselCardProps> = ({ car }) => {
+  const { id, imageUrl, modelName, modelType, bodyType } = car;
   return (
     <Container>
-      <Flex
-        role="list"
-        extend={{
-          justifyContent: "center",
-        }}
-      >
-        <header>
-                  <Flex>
-                  <Text as="h4" variant="hillary" subStyle="standard">
-              {car.modelName}
-            </Text>
-            <Text as="h4" variant="hillary" subStyle="standard">
-              {car.modelName}
-            </Text>
-            <Spacer />
-            <Text as="h3" variant="columbus" subStyle="standard" extend={{}}>
-              {car.modelType}
-            </Text>
-          </Flex>
-        </header>
-        
-        <Flex>
-          <Link href="">
-            <Image
-              src={car.imageUrl}
-              alt={`Volvo car ${car.bodyType} of model ${car.modelType} which is a ${car.modelType}`}
-              objectFit="contain"
-              width={300}
-              height={250}
-            />
+      <Flex aria-label={bodyType} role="list" extend={cardContainer}>
+        <Text subStyle="emphasis" extend={cardHeading}>
+          {bodyType}
+        </Text>
+        <Flex extend={cardSubHeading}>
+          <Text variant="hillary" subStyle="emphasis" extend={{ cardBodyType }}>
+            {modelName}
+          </Text>
+          <Text
+            as="h3"
+            variant="columbus"
+            subStyle="inline-link"
+            extend={{ cardModelType }}
+          >
+            {modelType}
+          </Text>
+        </Flex>
+
+        <Flex extend={imageContainer}>
+          <Image
+            className="carImage"
+            src={imageUrl}
+            alt={`${modelType}`}
+            objectFit="cover"
+            width={250}
+            height={220}
+          />
+        </Flex>
+        <Flex extend={{ ...cardFooter, font: "icon" }}>
+          <Link href={`/`} arrow="right">
+            Learn
+          </Link>
+          <Spacer size={2} />
+          <Link href={`/`} arrow="right">
+            Shop
           </Link>
         </Flex>
-        <Flex extend={linkContainer}>
-                <Link href={`/`} arrow="right">
-                    Learn
-                  </Link>
-                  <Spacer size={2} />
-                      <Link href={`/`} arrow="right">
-                    Shop
-                  </Link>
-                  </Flex>
-          </Flex>
-        
+      </Flex>
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Block, Logo } from "vcc-ui";
+import Container from "./Container";
 
 const Navbar = () => {
   return (
@@ -15,7 +16,9 @@ const Navbar = () => {
         padding: "0px 10px",
       }}
     >
-      <Logo type="spreadmark" height={11} />
+      <Container>
+        <Logo type="spreadmark" height={11} />
+        </Container>
     </Block>
   );
 };

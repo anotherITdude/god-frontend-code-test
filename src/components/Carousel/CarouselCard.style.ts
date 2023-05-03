@@ -1,20 +1,46 @@
 import { ExtendCSS } from "vcc-ui";
 
-export const carouselCardFooter: ExtendCSS = {
+
+export const cardContainer: ExtendCSS = {
+    justifyContent: "center", 
+    padding: '0px 0px',
+    marginTop:'0px'
+}
+
+export const cardHeading:ExtendCSS ={
+    color: "foreground.secondary",
+    justifyContent:'space-evenly',
+}
+
+export const cardSubHeading: ExtendCSS = {
+    paddingBottom:'5px',
+    fromL: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: 'space-between'
+    },
+}
+
+export const cardModelType: ExtendCSS = {
+    backgroundColor:'red'
+}
+
+export const cardBodyType: ExtendCSS = {
+    color:'foreground.secondary'
+}
+
+export const cardFooter: ExtendCSS = {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '-20px',  
-    textAlign: 'left',
-    backgroundColor:'background.secondary'
 };
 
-export const linkContainer: ExtendCSS = {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingBottom: '30px',
-    marginTop: '-20px',
-    marginRight:'5px'
+
+export const imageContainer: ExtendCSS = {
+    border: 0,
+    width: '100%',
 };
+
+
 
