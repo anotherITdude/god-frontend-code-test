@@ -1,19 +1,24 @@
 import Image from "next/image";
-import React from "react";
-import { Flex, LoadingBar, Message, Spinner } from "vcc-ui";
+import React, { useState, useRef } from "react";
+import { Block, Flex, IconButton, Message, Spinner } from "vcc-ui";
 import useCars from "../../hooks/useCars";
 import useFilter from "../../hooks/useFilter";
 import { Car } from "../../services/car-service";
 import Container from "../Container";
 import CarouselCard from "./CarouselCard";
 import Filter from "./Filter";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper";
-import { mainContainer } from "./Main.style";
+import SwiperClass, { Pagination } from "swiper";
+
+import { mainContainer, navContainer } from "./Main.style";
+import useMediaQuery from "../../hooks/useMediaQuery";
+
 const Main = () => {
+  //getting car list and filtering it
   const { cars, loading, error } = useCars();
   const filterModal = useFilter();
   let filteredCars: Car[] = [...cars];
@@ -22,6 +27,34 @@ const Main = () => {
       (car) => car.bodyType === filterModal.currentFilter
     );
   }
+
+  //swiper
+  const default_Slides_Count = 4;
+  const [swiperRef, setSwiperRef] = useState<SwiperClass>();
+  const [prev, setPrev] = useState(true);
+  const [next, setNext] = useState(false);
+
+  //show hide slide navigation
+  const isMobile = useMediaQuery("(min-width: 420px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  const slidesPerView = isDesktop ? 4 : isMobile ? 2.3 : 1.3;
+  const showNavigation =
+    isDesktop && (swiperRef?.slides?.length || 0) > default_Slides_Count;
+
+  swiperRef?.on("slideChange", (swiper: { activeIndex: number }) => {
+    if (swiper.activeIndex === 0) {
+      setPrev(true);
+    } else if (
+      swiper.activeIndex ===
+      (filteredCars.length || 0) - default_Slides_Count
+    ) {
+      setNext(true);
+    } else if (prev || next) {
+      setPrev(false);
+      setNext(false);
+    }
+  });
 
   if (error)
     return (
@@ -36,28 +69,15 @@ const Main = () => {
       {/* filter section */}
       <Filter />
       {/* slider section   */}
-      <Flex extend={mainContainer}>
+      <Block extend={mainContainer}>
         <Swiper
+          onSwiper={setSwiperRef}
           spaceBetween={0}
-          slidesPerView={filteredCars.length >= 4 ? 4 : 2}
-          modules={[Navigation, Pagination]}
-          navigation
-          pagination={{ clickable: true }}
+          slidesPerView={slidesPerView}
+          modules={[Pagination]}
+          navigation={false}
+          pagination={!showNavigation}
           scrollbar={{ draggable: true }}
-          breakpoints={{
-            395: {
-              slidesPerView: filteredCars.length >= 2 ? 2.3 : 2.3,
-              spaceBetween: 10,
-            },
-            1024: {
-              slidesPerView: filteredCars.length >= 2 ? 2.3 : 3,
-              spaceBetween: 0,
-            },
-            1200: {
-              slidesPerView: 4,
-              spaceBetween: 0,
-            },
-          }}
           className="carSwiper"
         >
           {filteredCars.map((res: Car) => (
@@ -66,7 +86,26 @@ const Main = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </Flex>
+      </Block>
+      {showNavigation && (
+        
+        <Block extend={navContainer}>
+          <IconButton
+            iconName="navigation-chevronback"
+            onClick={() => swiperRef?.slidePrev()}
+            variant="outline"
+            aria-disabled={prev}
+            aria-label="Previous Car"
+          ></IconButton>
+          <IconButton
+            iconName="navigation-chevronforward"
+            onClick={() => swiperRef?.slideNext()}
+            variant="outline"
+            aria-disabled={next}
+            aria-label="Next Car"
+          ></IconButton>
+          </Block>
+      )}
     </Container>
   );
 };

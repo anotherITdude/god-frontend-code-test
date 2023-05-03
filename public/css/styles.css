@@ -1,7 +1,7 @@
 body {
-  color: white;
   margin: 0;
-  padding:0
+  padding:0;
+  background-color:'black'
 }
 
 .carImage{
@@ -12,8 +12,9 @@ body {
 }
 
 .swiper{
-  min-height: 370px;
+  min-height: 350px;
 }
+
 
 .swiper .swiper-pagination{
   bottom:0px !important;
