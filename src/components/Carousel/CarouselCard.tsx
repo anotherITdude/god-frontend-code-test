@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Flex, Spacer, Text, Link, Block } from "vcc-ui";
+import { Flex, Spacer, Text, Link } from "vcc-ui";
 import { Car } from "../../services/car-service";
 import Container from "../Container";
 import {
@@ -26,7 +26,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ car }) => {
           {bodyType}
         </Text>
         <Flex extend={cardSubHeading}>
-          <Text variant="hillary" subStyle="emphasis" extend={{ cardBodyType }}>
+          <Text variant="hillary" subStyle="emphasis" extend={cardBodyType}>
             {modelName}
           </Text>
           <Text
@@ -50,12 +50,12 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ car }) => {
             height={220}
           />
         </Flex>
-        <Flex extend={{ ...cardFooter, font: "icon" }}>
-          <Link href={`/`} arrow="right">
+        <Flex extend={cardFooter}>
+          <Link href={`/learn/${id}`} arrow="right">
             Learn
           </Link>
           <Spacer size={2} />
-          <Link href={`/`} arrow="right">
+          <Link href={`/shop/${id}`} arrow="right">
             Shop
           </Link>
         </Flex>

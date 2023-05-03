@@ -11,9 +11,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import  { Navigation, Pagination } from "swiper";
-import { useSwiper } from "swiper/react";
-import {mainContainer} from './Main.style'
+import { Navigation, Pagination } from "swiper";
+import { mainContainer } from "./Main.style";
 const Main = () => {
   const { cars, loading } = useCars();
   const filterModal = useFilter();
@@ -23,27 +22,16 @@ const Main = () => {
       (car) => car.bodyType === filterModal.currentFilter
     );
   }
-  const SlideNextButton = () => {
-    const swiper = useSwiper();
 
-    return (
-      <button onClick={() => swiper.allowTouchMove}>
-        Slide to the next slide
-      </button>
-    );
-  };
   return (
     <Container>
       {/* filter section */}
       <Filter />
       {/* slider section   */}
-      <Flex
-        extend={mainContainer}
-      >
+      <Flex extend={mainContainer}>
         <Swiper
           spaceBetween={0}
           slidesPerView={filteredCars.length >= 4 ? 4 : 2}
-          onSlideChange={() => console.log("slide change")}
           modules={[Navigation, Pagination]}
           navigation
           pagination={{ clickable: true }}
@@ -71,7 +59,6 @@ const Main = () => {
           ))}
         </Swiper>
       </Flex>
-      <SlideNextButton />
     </Container>
   );
 };

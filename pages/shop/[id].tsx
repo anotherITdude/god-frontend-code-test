@@ -1,14 +1,31 @@
-import Navbar from "../../src/components/Navbar";
 import { useRouter } from "next/router";
+import { Card, CardContent, Flex, Link, Spacer, Text } from "vcc-ui";
+import Container from "../../src/components/Container";
 
 const ShopPage = () => {
   const router = useRouter();
-  console.log(router.query);
   return (
-    <>
-      <Navbar />
-      {router.query}
-    </>
+    <Container>
+      <Flex
+        extend={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "2%",
+          background: 'linear-gradient(pink, blue)',
+          padding:'20px'
+        }}
+      >
+        <Card extend={{ backgroundColor: "background.secondary" }}>
+          <CardContent>
+            <Text variant="ootah">Shop</Text>
+            <Spacer />
+            <Text>{router.query.id}</Text>
+            <Spacer />
+            <Link href={`/`} arrow="left" >Go Back</Link>
+          </CardContent>
+        </Card>
+      </Flex>
+    </Container>
   );
 };
 

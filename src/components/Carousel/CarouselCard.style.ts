@@ -25,7 +25,7 @@ export const cardModelType: ExtendCSS = {
 };
 
 export const cardBodyType: ExtendCSS = {
-  color: "foreground.secondary",
+  color: "foreground.primary",
 };
 
 export const cardFooter: ExtendCSS = {
