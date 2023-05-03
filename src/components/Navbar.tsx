@@ -3,7 +3,7 @@ import { Block, Logo } from "vcc-ui";
 import Container from "./Container";
 import Head from "next/head";
 import { navbarLayout } from "./Navbar.style";
-import Link  from 'next/link';
+import Link  from 'next/link'; 
 
 const Navbar = () => {
   return (
@@ -18,7 +18,7 @@ const Navbar = () => {
       </Head>
       <Block as="nav" extend={navbarLayout}>
         <Container>
-          <Link href='/'><Logo type="spreadmark" height={11} /></Link>
+          <Link role="button" href='/'><Logo type="spreadmark" height={11} /></Link>
         </Container>
       </Block>
     </>

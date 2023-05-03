@@ -45,7 +45,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ car }) => {
             className="carImage"
             src={imageUrl}
             alt={`${modelType}`}
-            objectFit="cover"
+            objectFit="contain"
             width={250}
             height={220}
           />

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Flex } from "vcc-ui";
+import { Flex, LoadingBar, Message, Spinner } from "vcc-ui";
 import useCars from "../../hooks/useCars";
 import useFilter from "../../hooks/useFilter";
 import { Car } from "../../services/car-service";
@@ -14,7 +14,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 import { mainContainer } from "./Main.style";
 const Main = () => {
-  const { cars, loading } = useCars();
+  const { cars, loading, error } = useCars();
   const filterModal = useFilter();
   let filteredCars: Car[] = [...cars];
   if (filterModal.currentFilter) {
@@ -23,8 +23,16 @@ const Main = () => {
     );
   }
 
+  if (error)
+    return (
+      <Flex extend={{ justifyContent: "center", alignItems: "center" }}>
+        <Message type="error">Something went wrong. Please try again</Message>
+      </Flex>
+    );
+
   return (
     <Container>
+      {loading && <Spinner />}
       {/* filter section */}
       <Filter />
       {/* slider section   */}
@@ -42,7 +50,7 @@ const Main = () => {
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView: 3.3,
+              slidesPerView: filteredCars.length >= 2 ? 2.3 : 3,
               spaceBetween: 0,
             },
             1200: {

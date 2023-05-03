@@ -7,4 +7,5 @@ export const navbarLayout: ExtendCSS = {
   justifyContent: "space-between",
   alignItems: "center",
   padding: "0px 10px",
+  marginBottom:'25px'
 };
