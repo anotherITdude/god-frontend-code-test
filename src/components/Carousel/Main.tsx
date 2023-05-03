@@ -90,13 +90,15 @@ const Main = () => {
       {showNavigation && (
         
         <Block extend={navContainer}>
+          <Block extend={{marginRight:'10px'}}>
           <IconButton
             iconName="navigation-chevronback"
             onClick={() => swiperRef?.slidePrev()}
             variant="outline"
             aria-disabled={prev}
             aria-label="Previous Car"
-          ></IconButton>
+            ></IconButton>
+            </Block>
           <IconButton
             iconName="navigation-chevronforward"
             onClick={() => swiperRef?.slideNext()}
